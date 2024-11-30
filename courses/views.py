@@ -1,5 +1,6 @@
-from django.shortcuts import render, redirect
-from .models import Course
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Course, Inscription
+from users.models import User
 
 
 # Create your views here.
@@ -18,3 +19,24 @@ def create_course(request):
         return redirect("course_list")
 
     return render(request, "courses/create_course.html")
+
+
+def enroll_course(request, course_id):
+    if request.method == "POST":
+        course = get_object_or_404(Course, id=course_id)
+        # El usuario actual que está inscrito
+        user = request.user
+
+        # Verifica si ya está inscrito
+        if Inscription.objects.filter(user=user, course=course).exists():
+            return render(
+                request,
+                "courses/course_list.html",
+                {
+                    "courses": Course.objects.all(),
+                    "error": "Ya estás inscrito en este curso.",
+                },
+            )
+
+        Inscription.objects.create(user=user, course=course)
+        return redirect("course_list")
