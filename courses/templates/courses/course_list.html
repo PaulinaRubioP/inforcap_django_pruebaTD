@@ -18,6 +18,11 @@
             >Duración: {{ course.duration }} horas</small
           >
         </p>
+        <!-- Botón para inscribirse -->
+        <form method="post" action="{% url 'enroll_course' course.id %}">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-primary">Inscribirse</button>
+        </form>
       </div>
     </div>
   </div>
