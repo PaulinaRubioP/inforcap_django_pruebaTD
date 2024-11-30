@@ -1,4 +1,11 @@
-<h1 class="text-center">Listado de Cursos</h1>
+<!-- Importar el archivo base.html -->
+{% extends 'base.html' %}
+
+<!-- Define el título de la página -->
+{% block title %}Listado de Cursos{% endblock %}
+
+<!-- Define el contenido de la página -->
+{% block content %}
 <div class="row">
   {% for course in courses %}
   <div class="col-md-4">
@@ -19,3 +26,6 @@
 <a href="{% url 'create_course' %}" class="btn btn-success mt-3"
   >Crear un nuevo curso</a
 >
+
+<!-- Fin del bloque de contenido -->
+{% endblock %}

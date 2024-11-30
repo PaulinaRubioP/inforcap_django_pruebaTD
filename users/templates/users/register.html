@@ -1,5 +1,14 @@
+<!-- Importa el archivo base.html -->
+{% extends 'base.html' %}
+
+<!-- Define el título de la página -->
+{% block title %}Registro de Usuario{% endblock %}
+
+<!-- Define el contenido de la página -->
+{% block content %}
 <h1 class="text-center">Registro de Usuario</h1>
 <form method="post" class="mx-auto" style="max-width: 400px">
+  <!-- Incluye el token de seguridad -->
   {% csrf_token %}
   <div class="mb-3">
     <label for="username" class="form-label">Nombre de Usuario</label>
@@ -27,3 +36,5 @@
   </div>
   <button type="submit" class="btn btn-primary w-100">Registrarse</button>
 </form>
+<!-- Fin del bloque de contenido -->
+{% endblock %}

@@ -1,4 +1,11 @@
-<h1 class="text-center">Crear Curso</h1>
+<!-- Importar el archivo base.html -->
+{% extends 'base.html' %}
+
+<!-- Define el título de la página -->
+{% block title %}Crear Curso{% endblock %}
+
+<!-- Define el contenido de la página -->
+{% block content %}
 <form method="post" class="mx-auto" style="max-width: 400px">
   {% csrf_token %}
   <div class="mb-3">
@@ -29,3 +36,6 @@
 <a href="{% url 'course_list' %}" class="btn btn-secondary mt-3"
   >Volver al listado de cursos</a
 >
+
+<!-- Fin del bloque de contenido -->
+{% endblock %}
