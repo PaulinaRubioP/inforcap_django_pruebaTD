@@ -19,7 +19,7 @@ class Course(models.Model):
 
 
 class Inscription(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey("users.User", on_delete=models.CASCADE)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     progress = models.PositiveIntegerField(
         default=0, help_text="Progreso en porcentaje"
@@ -29,6 +29,11 @@ class Inscription(models.Model):
     class Meta:
         verbose_name = "Inscripción"
         verbose_name_plural = "Inscripciones"
+        # Un usuario no puede inscribirse dos veces en el mismo curso
+        unique_together = (
+            "user",
+            "course",
+        )
 
     def __str__(self):
         return f"{self.user.username} inscrito en {self.course.title}"
